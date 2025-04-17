@@ -1,0 +1,2 @@
+-- SQLite
+TRUNCATE users;

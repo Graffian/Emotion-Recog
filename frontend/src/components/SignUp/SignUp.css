@@ -1,0 +1,30 @@
+.signUpDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    gap:10px;
+}
+.mainDiv{
+    display: flex;
+    flex: content;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 700px;
+    height: auto;
+    padding-bottom: 50px;
+    margin-top: 150px;
+    margin-left: 390px;
+}
+.headerText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+input{
+    padding: 4px 50px;
+}
