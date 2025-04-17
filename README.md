@@ -70,7 +70,7 @@ cd Emotion-Recog
 
 ## 🧩 Setup Frontend
 
-```bash
+
 cd frontend
 npm install
 npm run dev
@@ -79,6 +79,6 @@ npm run dev
 
 To start the FastAPI backend server, run the following commands:
 
-```bash
+
 cd backend
 uvicorn app:app --reload
