@@ -15,6 +15,9 @@ class info(BaseModel):
 
 special_characters = list(punctuation[i] for i in range(0,len(punctuation)))
 
+class message(BaseModel):
+    msg:str
+
 
     
     

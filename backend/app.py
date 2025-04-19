@@ -1,14 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from utils import Item
-from utils import credentials , info
-from utils import special_characters
+from utils import credentials , info , message
 import base64
 import time
 import os
 from password_strength import PasswordPolicy
 import sqlite3
-
+from preprocess import predict
 connection = sqlite3.connect("users.db")
 cursor = connection.cursor()
 
@@ -25,7 +24,7 @@ policy = PasswordPolicy.from_names(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins="http://localhost:5173",
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,6 +39,8 @@ async def get_image(item:Item):
     base_64 = base64.b64decode(base_64)
     with open(f"uploads/image-{time.time()}.webp" , "wb") as f:
         f.write(base_64)
+    return {"mood" : predict()}
+ 
         
 @app.post("/api/signup")
 async def signup(cred:credentials):
@@ -61,3 +62,14 @@ async def login(cred:info):
         return {"msg" : "Success"}
     else :
         return {"msg" : "Acc does not exist sign in to continue"}
+    
+
+
+@app.post("/api/retake")
+async def retake(msg : message):
+    print(msg)
+    for image in os.listdir("./uploads"):
+        path = f"./uploads/{image}"
+        os.remove(path)
+        
+    return {"msg" : "Success"}
